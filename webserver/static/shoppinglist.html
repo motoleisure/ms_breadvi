@@ -1,0 +1,117 @@
+<html>
+<title></title>
+<head>
+
+<style>
+.div1{ width:100%; height:100%; background:#E0E0E0; valign:top }
+.div2{ width:80; height:150px; display:inline-block; background:#87CEFA; text-align:center; font-weight:bold; margin:1px}
+.div3{ width:80px; height:30px; display:inline-block; background:#AAAAAA; text-align:center; font-weight:bold; margin:1px}
+.bigtext{ line-height:70px; font-size:20px; }
+.smalltext{ font-size:14px; padding-top:0px; margin:0px}
+.productli{ list-style:none}
+.spantext1{ display:inlie-block;padding-right:70px;width:50px;height:50px;text-align:center}
+.spantext2{ display:inlie-block;padding-right:70px;width:350px;height:50px;text-align:center}
+
+.spanbluetext1{ display:inlie-block;padding-right:70px;width:50px;height:50px;text-align:center;color:#009100}
+.spanbluetext2{ display:inlie-block;padding-right:70px;width:350px;height:50px;text-align:center;color:#009100}
+.spanredtext1{ display:inlie-block;padding-right:70px;width:50px;height:50px;text-align:center;color:#FF2D2D}
+.spanredtext2{ display:inlie-block;padding-right:70px;width:350px;height:50px;text-align:center;color:#FF2D2D}
+
+table.gridtable {
+    font-family: verdana,arial,sans-serif;
+    font-size:25px;
+    color:#333333;
+	width: 100%;
+    border-width: 1px;
+    border-color: #666666;
+    border-collapse: collapse;
+}
+table.gridtable th {
+	text-align: center;
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #666666;
+    background-color: #dedede;
+}
+table.gridtable tr {
+    background-color:#ffffff;
+}
+table.gridtable td {
+	text-align: center;
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #666666;
+}
+
+</style>
+
+<script>
+setInterval("updateshoppinglist()", 1000);
+function updateshoppinglist()
+{
+  var xmlhttp;  
+  if (window.XMLHttpRequest)
+  {
+    // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+    xmlhttp=new XMLHttpRequest();
+  }
+  else
+  {
+    // IE6, IE5 浏览器执行代码
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+	  var data=xmlhttp.responseText;
+	  document.getElementById("shoppinglist").innerHTML=data
+    }
+  }
+  var reurl = "/getshoppinglist";
+  xmlhttp.open("GET",reurl,true);
+  xmlhttp.send();
+}
+</script>
+
+</head>
+
+<body>
+<table width="100%" height="100%" cellspacing="0" border="0">
+	<tr height="5%" bgcolor="#871618"><td valign="middle" align="center"><h1><b><font color="#CFCFCF">购物清单列表</font></b></h1></td></tr>
+	<tr height="90%"><td>
+		<table width="100%" height="100%" cellspacing="0" border="0">
+			<tr height="10%"><td>
+				<table width="100%" height="100%" cellspacing="0" border="0">
+				<tr><td>
+					<table width="100%" height="100%" cellspacing="0" border="0">
+						<tr><td>
+							<table  width="100%" height="100%" cellspacing="0" border="0"><tr align="center">
+							<td><button onclick="closedoor()" style="height:60px;width:240px;font-size:30px;font-weight:bold;">购物清单确认</button></td>
+							<td></td>
+							</tr></table>
+						</td></tr>
+						<tr align='center'><td>
+							<div id='messagetab'></div>
+							<div id='handsesstab'></div>
+						</td></tr>
+					</table>
+				</td></tr>
+				</table>
+			</td></tr>
+			<tr height="90%"><td>
+			<div class="div1">
+					<table id='shoppinglist', class="gridtable">
+						<tr><th width='50px'>商品编号</th><th width='300px'>商品名称</th><th width='40px'>数量</th><th width='60px'>单价(元)</th></tr>
+					</table>
+			</div>
+			</td></tr>
+		</table>
+	</td></tr>
+	<tr height="5%" bgcolor="#871618"><td></td></tr>
+</table>
+</body>
+
+</html>
